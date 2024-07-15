@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "A starter template for Express and TypeScript applications",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "start": "node dist/index.js",
     "dev": "nodemon",
