@@ -1,12 +1,18 @@
 import { NextFunction, Request, Response } from "express";
-import AppError from "./app-error";
+import createHttpError from "http-errors";
 
-export default function (err: AppError, req: Request, res: Response, _: NextFunction) {
-  err.statusCode = err.statusCode || 500;
-  return res.status(err.statusCode).json({
-    status: "error",
+export default function (err: any, _1: Request, res: Response, _2: NextFunction) {
+
+  if (!createHttpError.isHttpError(err)) {
+    err = process.env.NODE_ENV === "development" ? err : createHttpError.InternalServerError("Something went wrong");
+  }
+  const statusCode = err.statusCode || 500;
+
+  return res.status(statusCode).json({
+    success: false,
     error: {
       message: err.message,
+      validationErrors: err.headers,
     },
   });
 }

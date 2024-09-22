@@ -30,6 +30,7 @@
     "globals": "^15.8.0",
     "prettier": "^3.3.2",
     "tsx": "^4.16.2",
-    "typescript": "^5.5.3"
+    "typescript": "^5.5.3",
+    "@types/http-errors": "^2.0.4"
   }
 }
